@@ -1,5 +1,6 @@
 ---
 title: iOS并发编程之OperationQueues
+cover_image: https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3914779275,1210601615&fm=15&gp=0.jpg
 ---
 ### 1、Operation Queues简介
 
