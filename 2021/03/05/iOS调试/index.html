@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  
+  <title>iOS调试 - NaCl</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+<link rel="stylesheet" href="/css/waline.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+    <body>
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">氯化钠哦</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/NaCl424" target="_blank">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-zhihu nav-item-icon" href="https://www.zhihu.com/hot" target="_blank">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-weibo nav-item-icon" href="https://weibo.com/" target="_blank">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        <article class="post">
+    <div class="meta">
+        
+        <div class="date" id="date">
+            
+            
+            
+            <span>March</span>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <span>5,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">iOS调试</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h4 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h4><blockquote>
+<p>普通断点</p>
+</blockquote>
+<blockquote>
+<p>全局断点</p>
+</blockquote>
+<blockquote>
+<p>条件断点</p>
+</blockquote>
+<p>条件断点中的Add Symbolic BreakPoint为某一方法加断点，可以快速定位像unrecognized selector sent to instance 0xaxxxx 这种错误</p>
+<h4 id="LLDB"><a href="#LLDB" class="headerlink" title="LLDB"></a>LLDB</h4><blockquote>
+<p>lldb命令</p>
+</blockquote>
+<p>expression命令<br><code>expression &lt;cmd-options&gt; -- &lt;expr&gt;</code></p>
+<p>1.在代码运行过程中，可以通过执行某个表达式来动态改变程序运行的轨迹。<br>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 改变颜色</span><br><span class="line">(lldb) expression -- self.view.backgroundColor &#x3D; [UIColor redColor]</span><br><span class="line">&#x2F;&#x2F; 刷新界面</span><br><span class="line">(lldb) expression -- (void)[CATransaction flush]</span><br></pre></td></tr></table></figure>
+
+<p>2.打印</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(lldb) expression -- self.view</span><br><span class="line">(UIView *) $1 &#x3D; 0x00007fe322c18a10</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>p &amp; print &amp; call命令</p>
+</blockquote>
+<p>一般情况下，我们直接用expression还是用得比较少的，更多时候我们用的是p、print、call。这三个命令其实都是expression –的别名</p>
+<blockquote>
+<p>po命令</p>
+</blockquote>
+<p>打印对象</p>
+<blockquote>
+<p>thread backtrace &amp; bt命令</p>
+</blockquote>
+<p>线程堆栈信息</p>
+<blockquote>
+<p>c &amp; n &amp; s &amp; finish命令</p>
+</blockquote>
+<p>c/ continue/ thread continue: 这三个命令表示程序继续运行<br>n/ next/ thread step-over: 这三个命令表示单步运行<br>s/ step/ thread step-in: 这三个命令表示进入某个方法<br>finish/ step-out: 这两个命令表示直接走完当前方法，返回到上层frame</p>
+<blockquote>
+<p>frame variable</p>
+</blockquote>
+<p>打印当前所有变量</p>
+<p><a target="_blank" rel="noopener" href="http://lldb.llvm.org/lldb-gdb.html">http://lldb.llvm.org/lldb-gdb.html</a></p>
+<h4 id="打印日志"><a href="#打印日志" class="headerlink" title="打印日志"></a>打印日志</h4><p>一般在代码中使用NSLog()方法在控制台输出信息。但是在真机上日志无法保存，所以需要将Log日志重定向输出到文件中保存。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取Document目录下的Log文件夹，若没有则新建</span></span><br><span class="line"><span class="built_in">NSArray</span> *paths = <span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>);</span><br><span class="line"><span class="built_in">NSString</span> *logDirectory = [[paths objectAtIndex:<span class="number">0</span>] stringByAppendingPathComponent:<span class="string">@&quot;Log&quot;</span>];</span><br><span class="line"><span class="built_in">NSFileManager</span> *fileManager = [<span class="built_in">NSFileManager</span> defaultManager];</span><br><span class="line"></span><br><span class="line"><span class="built_in">BOOL</span> fileExists = [fileManager fileExistsAtPath:logDirectory];</span><br><span class="line"><span class="keyword">if</span> (!fileExists) &#123;</span><br><span class="line">	[fileManager createDirectoryAtPath:logDirectory  withIntermediateDirectories:<span class="literal">YES</span> attributes:<span class="literal">nil</span> error:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDateFormatter</span> *formatter = [[<span class="built_in">NSDateFormatter</span> alloc] init];</span><br><span class="line">[formatter setLocale:[[<span class="built_in">NSLocale</span> alloc] initWithLocaleIdentifier:<span class="string">@&quot;zh_CN&quot;</span>]];</span><br><span class="line">[formatter setDateFormat:<span class="string">@&quot;yyyy-MM-dd HH:mm:ss&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//每次启动后都保存一个新的日志文件中</span></span><br><span class="line"><span class="built_in">NSString</span> *dateStr = [formatter stringFromDate:[<span class="built_in">NSDate</span> date]];</span><br><span class="line"><span class="built_in">NSString</span> *logFilePath = [logDirectory stringByAppendingFormat:<span class="string">@&quot;/%@.txt&quot;</span>,dateStr];</span><br><span class="line"></span><br><span class="line"><span class="comment">// freopen 重定向输出输出流，将log输入到文件</span></span><br><span class="line">freopen([logFilePath cStringUsingEncoding:<span class="built_in">NSASCIIStringEncoding</span>], <span class="string">&quot;a+&quot;</span>, stdout);</span><br><span class="line">freopen([logFilePath cStringUsingEncoding:<span class="built_in">NSASCIIStringEncoding</span>], <span class="string">&quot;a+&quot;</span>, stderr);</span><br></pre></td></tr></table></figure>
+<p>在APP刚启动的方法中调用以上方法，并且在应用程序的Info.plist文件中添加UIFileSharingEnabled键，并将键值设置为YES。这样就可以通过iTune查看指定应用程序的共享文件夹，将文件拷贝到电脑上查看。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</span><br></pre></td></tr></table></figure>
+
+<h4 id="内存分析和Instruments"><a href="#内存分析和Instruments" class="headerlink" title="内存分析和Instruments"></a>内存分析和Instruments</h4><p>MRR模式(retain/release)<br>ARC模式下内存泄漏主要原因：循环引用、C语言API(如：core Foundation框架 Core Graphics框架)</p>
+<blockquote>
+<p>1、静态内存分析（Analyze）</p>
+</blockquote>
+<p>不运行程序，直接对代码进行内存分析，查看代码是否有内存泄露或潜在的内存泄露<br>优点：分析速度快，并且可以对所有的代码进行内存分析<br>缺点：分析结果不一定准确（没有运行程序，根据代码的上下文语法结构）<br>注意：如果有提示有内存泄露，一定结合代码查看代码是否有问题</p>
+<blockquote>
+<p>2、动态内存分析(Profile =&gt; Instruments=&gt;leaks)</p>
+</blockquote>
+<p>真正运行程序，对程序进行内存分析（查看内存分配情况、内存泄露）<br>优点：分析非常准确，如果发现有提示内存泄露，基本可以断定代码问题<br>缺点：分析效率低（真正运行了一段代码，才能对该代码进行内存分析）<br>注意点：如果发现有内存泄露，基本需要修改代码（基本有内泄露）</p>
+<blockquote>
+<p>Time Profiler</p>
+</blockquote>
+<p>CPU使用，运行时间</p>
+<h4 id="界面调试工具Reveal"><a href="#界面调试工具Reveal" class="headerlink" title="界面调试工具Reveal"></a>界面调试工具Reveal</h4>
+    </div>
+
+    <div class="about">
+        <h1>About this Post</h1>
+        <p>This post is written by 氯化钠哦, licensed under <a
+                target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+    </div>
+
+    
+        
+    
+</article>
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h4 class="title">Blog</h4>
+                
+                <a href="/" class="item" target="_blank">Blog</a>
+                
+                <a href="/archives" class="item" target="_blank">Archives</a>
+                
+                <a href="/friends" class="item" target="_blank">Friends</a>
+                
+                <a href="/projects" class="item" target="_blank">Projects</a>
+                
+                <a href="/resume" class="item" target="_blank">Resume</a>
+                
+                <a href="/about" class="item" target="_blank">About</a>
+                
+                <a href="/atom.xml" class="item" target="_blank">RSS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Projects</h4>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Me</h4>
+                
+                <a href="https://github.com/NaCl424" class="item" target="_blank">GitHub</a>
+                
+                <a href="https://www.zhihu.com/hot" class="item" target="_blank">Zhihu</a>
+                
+                <a href="https://weibo.com/" class="item" target="_blank">Weibo</a>
+                
+                <a href="mailto:2935288967@qq.com" class="item" target="_blank">Email</a>
+                
+            </div>
+            
+        </div>
+        &copy; 2021 氯化钠哦<br />
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+</footer>
+
+        
+<script src="/js/main.js"></script>
+
+        
+    </body>
+</html>
