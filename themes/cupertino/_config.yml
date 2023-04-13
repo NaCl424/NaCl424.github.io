@@ -12,18 +12,18 @@ show_excerpt: false
 # navigation config
 nav:
   # the title displays in the upper left corner which won't change
-  title: 氯化钠哦
+  title: IntelliMatchChat
   # the items displays in the upper right corner
   items:
     # these items will display as a link
     Archives: /archives
-    Friends: /friends
-    Projects: /projects
+    OpenAI API: https://platform.openai.com/account/api-keys
+    # Projects: /projects
     About: /about
     # these will be automatically be an icon
-    GitHub: https://github.com/NaCl424
-    Zhihu: https://www.zhihu.com/hot
-    Weibo: https://weibo.com/
+    # GitHub: https://github.com/NaCl424
+    # Zhihu: https://www.zhihu.com/hot
+    # Weibo: https://weibo.com/
 
 # footer items
 footer:
@@ -32,11 +32,11 @@ footer:
     # the items after the title, display as links
     Blog: /
     Archives: /archives
-    Friends: /friends
-    Projects: /projects
-    Resume: /resume
+    OpenAI API: https://platform.openai.com/account/api-keys
+    # Projects: /projects
+    # Resume: /resume
     About: /about
-    RSS: /atom.xml
+    # RSS: /atom.xml
   # also the title
   Projects:
     # the items
@@ -48,9 +48,9 @@ footer:
   Me:
     # items
     GitHub: https://github.com/NaCl424
-    Zhihu: https://www.zhihu.com/hot
-    Weibo: https://weibo.com/
-    Email: mailto:2935288967@qq.com
+    # Zhihu: https://www.zhihu.com/hot
+    # Weibo: https://weibo.com/
+    # Email: mailto:2935288967@qq.com
 
 # the license your posts under
 license: CC BY-NC 4.0
