@@ -12,7 +12,7 @@ show_excerpt: false
 # navigation config
 nav:
   # the title displays in the upper left corner which won't change
-  title: IntelliMatchChat
+  title: Easy-AI
   # the items displays in the upper right corner
   items:
     # these items will display as a link
